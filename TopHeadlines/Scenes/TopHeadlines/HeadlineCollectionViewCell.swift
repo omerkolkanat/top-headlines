@@ -16,10 +16,14 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsFromLabel: UILabel!
     @IBOutlet weak var newsTimeLabel: UILabel!
     
+    private lazy var dateFormatter: DateFormatter = {
+        let df = DateFormatter()
+        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
+        return df
+    }()
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        layer.borderColor = UIColor.gray.cgColor
-        layer.borderWidth = 0.2
     }
     
     override func prepareForReuse() {
@@ -28,7 +32,7 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         newsTitleLabel.text = nil
         newsDescriptionLabel.text = nil
         newsFromLabel.text = nil
-        newsTimeLabel.text = nil
+//        newsTimeLabel.text = nil
     }
     
     func configure(with article: Article) {
@@ -39,6 +43,8 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         newsTitleLabel.text = article.title
         newsDescriptionLabel.text = article.description
         newsFromLabel.text = "From : \(article.source.name)"
-        newsTimeLabel.text = article.publishedAt
+
+        let date = dateFormatter.date(from: article.publishedAt)
+        newsTimeLabel.text = date?.timeAgoSinceDate()
     }
 }

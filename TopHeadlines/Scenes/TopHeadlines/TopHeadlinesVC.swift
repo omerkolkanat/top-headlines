@@ -11,10 +11,10 @@ import UIKit
 class TopHeadlinesVC: UIViewController {
 
     enum Const {
-        static let cellHeight: CGFloat = 240
+        static let cellHeight: CGFloat = 270
         static let minLineSpacing: CGFloat = 2
         static let minItemSpacing: CGFloat = 2
-        static let safeAreaSize: CGFloat = 40
+        static let safeAreaSize: CGFloat = 27
         static let itemPerRowInPortrait: CGFloat = 2
         static let itemPerRowInLandscape: CGFloat = 3
         static let fullWidthItemRepeatCount: Int = 7
@@ -34,8 +34,17 @@ class TopHeadlinesVC: UIViewController {
     
     func setupUI() {
         title = "Top Headlines"
-    }
+        collectionView.contentInsetAdjustmentBehavior = .always
 
+    }
+    
+    override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
+        super.viewWillTransition(to: size, with: coordinator)
+        guard let flowLayout = collectionView.collectionViewLayout as? UICollectionViewFlowLayout else {
+            return
+        }
+        flowLayout.invalidateLayout()
+    }
 }
 
 extension TopHeadlinesVC: UICollectionViewDelegate {
@@ -43,6 +52,7 @@ extension TopHeadlinesVC: UICollectionViewDelegate {
 }
 
 extension TopHeadlinesVC: UICollectionViewDataSource {
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.articles.count
     }
@@ -61,7 +71,12 @@ extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
         if indexPath.row % Const.fullWidthItemRepeatCount == 0 {
-            return CGSize(width: self.view.frame.width, height: Const.cellHeight)
+            if UIDevice.current.orientation.isLandscape {
+                let safeAreaSize: CGFloat = UIDevice.current.hasNotch ? Const.safeAreaSize * 4 : 0
+                return CGSize(width: self.view.frame.width - safeAreaSize, height: Const.cellHeight)
+            } else {
+                return CGSize(width: self.view.frame.width, height: Const.cellHeight)
+            }
         } else {
             if UIDevice.current.orientation.isLandscape {
                 let safeAreaSize: CGFloat = UIDevice.current.hasNotch ? Const.safeAreaSize : 0
@@ -73,11 +88,6 @@ extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
             }
         }
     }
-    
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
-        return Const.minItemSpacing
-    }
-    
 }
 
 extension TopHeadlinesVC: TopHeadlineViewModelProtocol {
