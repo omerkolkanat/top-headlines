@@ -34,7 +34,6 @@ class TopHeadlinesVC: UIViewController {
     
     func setupUI() {
         title = "Top Headlines"
-        collectionView.contentInsetAdjustmentBehavior = .always
 
     }
     
@@ -73,6 +72,7 @@ extension TopHeadlinesVC: UICollectionViewDataSource {
         }
     }
 }
+
 extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {

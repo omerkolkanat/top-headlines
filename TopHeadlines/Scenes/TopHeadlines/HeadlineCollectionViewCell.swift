@@ -47,6 +47,8 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
                     self.newsImageView.image = UIImage(named: "placeholder")
                 }
             }
+        } else {
+            self.newsImageView.image = UIImage(named: "placeholder")
         }
         newsTitleLabel.text = article.title
         newsDescriptionLabel.text = article.description
