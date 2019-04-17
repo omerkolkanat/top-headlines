@@ -66,6 +66,12 @@ extension TopHeadlinesVC: UICollectionViewDataSource {
         return cell
     }
     
+    func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
+        let lastElement = model.articles.count - 1
+        if indexPath.row == lastElement {
+            model.fetchTopHeadlines()
+        }
+    }
 }
 extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout,

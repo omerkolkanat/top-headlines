@@ -15,15 +15,20 @@ protocol TopHeadlineViewModelProtocol: class {
 class TopHeadlineViewModel: NSObject {
     weak var delegate: TopHeadlineViewModelProtocol?
     fileprivate(set) var articles: [Article] = []
-    let networkManager = NetworkManager()
+    private let networkManager = NetworkManager()
+    private var totalNewsCount = 0
+    private var pageCounter = 1
 
     func fetchTopHeadlines() {
-        networkManager.getTopHeadlines(page: 1) { (news, error) in
-            if error == nil {
-                guard let articles = news?.articles else { return }
-                self.articles = articles
-                self.delegate?.didUpdateTopHeadlines()
-            }
+        if totalNewsCount != 0 && totalNewsCount == articles.count { return }
+        networkManager.getTopHeadlines(page: pageCounter) { [weak self] (news, error) in
+            guard let totalNewsCount = news?.totalResults else { return }
+            self?.totalNewsCount = totalNewsCount
+            
+            guard let articles = news?.articles else { return }
+            self?.articles += articles
+            self?.pageCounter += 1
+            self?.delegate?.didUpdateTopHeadlines()
         }
     }
 }
