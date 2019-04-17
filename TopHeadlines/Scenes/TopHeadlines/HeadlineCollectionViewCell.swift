@@ -38,13 +38,13 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
     func configure(with article: Article) {
         if let urlString = article.urlToImage,
             let imageURL = URL(string: urlString) {
-            newsImageView.kf.setImage(with: imageURL) { result in
+            newsImageView.kf.setImage(with: imageURL) { [weak self] result in
                 switch result {
                 case .success(_):
                     break
                 case .failure(let error):
                     print(error.errorDescription ?? "image download error")
-                    self.newsImageView.image = UIImage(named: "placeholder")
+                    self?.newsImageView.image = UIImage(named: "placeholder")
                 }
             }
         } else {
