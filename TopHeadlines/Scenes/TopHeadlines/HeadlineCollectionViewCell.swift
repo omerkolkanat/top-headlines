@@ -32,13 +32,21 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         newsTitleLabel.text = nil
         newsDescriptionLabel.text = nil
         newsFromLabel.text = nil
-//        newsTimeLabel.text = nil
+        newsTimeLabel.text = nil
     }
     
     func configure(with article: Article) {
         if let urlString = article.urlToImage,
             let imageURL = URL(string: urlString) {
-            newsImageView.kf.setImage(with: imageURL)
+            newsImageView.kf.setImage(with: imageURL) { result in
+                switch result {
+                case .success(_):
+                    break
+                case .failure(let error):
+                    print(error.errorDescription ?? "image download error")
+                    self.newsImageView.image = UIImage(named: "placeholder")
+                }
+            }
         }
         newsTitleLabel.text = article.title
         newsDescriptionLabel.text = article.description
