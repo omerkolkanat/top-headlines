@@ -63,10 +63,10 @@ class TopHeadlineViewModel: NSObject {
     }
     
     private func insertArticleToDB(article: Article) {
-        DispatchQueue.main.async {
+        DispatchQueue.main.async { [weak self] in
             let insertedArticle = CoreDataManager.sharedManager.insertArticle(article: article)
             if let insertedArticle = insertedArticle {
-                self.articles.append(insertedArticle)
+                self?.articles.append(insertedArticle)
             }
         }
     }

@@ -18,17 +18,12 @@ class HeadlineDetailsVC: UIViewController {
     @IBOutlet weak var detailContentLabel: UILabel!
     @IBOutlet weak var detailPublisherLabel: UILabel!
     
-    private lazy var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return df
-    }()
+    var viewModel: HeadlineDetailsViewModel?
     
-    var model: ArticleModel?
     override func viewDidLoad() {
         super.viewDidLoad()
-        guard let model = model else { return }
-        if let imageURL = model.urlToImage {
+        guard let viewModel = viewModel else { return }
+        if let imageURL = viewModel.imageURL {
             detailImageView.kf.setImage(with: imageURL) { [weak self] result in
                 switch result {
                 case .success(_):
@@ -41,16 +36,16 @@ class HeadlineDetailsVC: UIViewController {
         } else {
             self.detailImageView.image = UIImage(named: "placeholder")
         }
-        detailTitleLabel.text = model.title
-        detailDescLabel.text = model.desc
-        detailContentLabel.text = model.content
-        detailPublisherLabel.text = "From : \(model.sourceName!)"
-        
-        let date = dateFormatter.date(from: model.publishedAt!)
-        detailPublishTimeLabel.text = date?.timeAgoSinceDate()
+        detailTitleLabel.text = viewModel.title
+        detailDescLabel.text = viewModel.desc
+        detailContentLabel.text = viewModel.content
+        detailPublisherLabel.text = "From : \(viewModel.publisher)"
+        detailPublishTimeLabel.text = viewModel.publishedAt
     }
     @IBAction func detailButtonTapped(_ sender: Any) {
-        guard let model = model else { return }
-        UIApplication.shared.open(model.url!)
+        guard let viewModel = viewModel else { return }
+        if let url = viewModel.url {
+            UIApplication.shared.open(url)
+        }
     }
 }

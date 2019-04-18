@@ -9,6 +9,7 @@
 import Foundation
 
 extension Date {
+
     func timeAgoSinceDate() -> String {
         // From Time
         let fromDate = self

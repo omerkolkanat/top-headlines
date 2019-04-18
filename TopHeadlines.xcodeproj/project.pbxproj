@@ -27,13 +27,15 @@
 		119776AC2265C41300C5DECC /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776AB2265C41300C5DECC /* Router.swift */; };
 		119776AE2265C69500C5DECC /* NewsEndPoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776AD2265C69500C5DECC /* NewsEndPoint.swift */; };
 		119776B22265E25D00C5DECC /* HeadlineCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776B12265E25D00C5DECC /* HeadlineCollectionViewCell.swift */; };
-		119776B922667C5500C5DECC /* Data+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776B722667C5500C5DECC /* Data+Utils.swift */; };
+		119776B922667C5500C5DECC /* Date+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776B722667C5500C5DECC /* Date+Utils.swift */; };
 		119776BA22667C5500C5DECC /* UIDevice+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 119776B822667C5500C5DECC /* UIDevice+Utils.swift */; };
 		11B9FD5322671975000515DF /* HeadlineDetailsVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11B9FD5222671975000515DF /* HeadlineDetailsVC.swift */; };
 		11DF53352268629F00FE6D52 /* ArticleModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 11DF53332268629F00FE6D52 /* ArticleModel.xcdatamodeld */; };
 		11DF53372268657600FE6D52 /* CoreDataManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF53362268657600FE6D52 /* CoreDataManager.swift */; };
 		11DF53392268967E00FE6D52 /* Reachability.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF53382268967E00FE6D52 /* Reachability.swift */; };
 		11DF533B2268B20F00FE6D52 /* AlertHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF533A2268B20F00FE6D52 /* AlertHelper.swift */; };
+		11DF533D2268BC9600FE6D52 /* HeadlineDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF533C2268BC9600FE6D52 /* HeadlineDetailsViewModel.swift */; };
+		11DF53422268CA2900FE6D52 /* String+Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 11DF53412268CA2900FE6D52 /* String+Utils.swift */; };
 		32DE78040B975505FD2FDF51 /* Pods_TopHeadlinesUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = BE5CF8D1A7C9DA9237533A69 /* Pods_TopHeadlinesUITests.framework */; };
 		BB8065A07BDF5D3BFC17744B /* Pods_TopHeadlinesTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A1A92F4CAE118731A01CAB /* Pods_TopHeadlinesTests.framework */; };
 		F91630CEDE5D6CD5083FD410 /* Pods_TopHeadlines.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 54A8DA46F728936FA546B518 /* Pods_TopHeadlines.framework */; };
@@ -83,13 +85,15 @@
 		119776AB2265C41300C5DECC /* Router.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		119776AD2265C69500C5DECC /* NewsEndPoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewsEndPoint.swift; sourceTree = "<group>"; };
 		119776B12265E25D00C5DECC /* HeadlineCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineCollectionViewCell.swift; sourceTree = "<group>"; };
-		119776B722667C5500C5DECC /* Data+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Data+Utils.swift"; sourceTree = "<group>"; };
+		119776B722667C5500C5DECC /* Date+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Date+Utils.swift"; sourceTree = "<group>"; };
 		119776B822667C5500C5DECC /* UIDevice+Utils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIDevice+Utils.swift"; sourceTree = "<group>"; };
 		11B9FD5222671975000515DF /* HeadlineDetailsVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineDetailsVC.swift; sourceTree = "<group>"; };
 		11DF53342268629F00FE6D52 /* Article.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Article.xcdatamodel; sourceTree = "<group>"; };
 		11DF53362268657600FE6D52 /* CoreDataManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataManager.swift; sourceTree = "<group>"; };
 		11DF53382268967E00FE6D52 /* Reachability.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Reachability.swift; sourceTree = "<group>"; };
 		11DF533A2268B20F00FE6D52 /* AlertHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertHelper.swift; sourceTree = "<group>"; };
+		11DF533C2268BC9600FE6D52 /* HeadlineDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HeadlineDetailsViewModel.swift; sourceTree = "<group>"; };
+		11DF53412268CA2900FE6D52 /* String+Utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Utils.swift"; sourceTree = "<group>"; };
 		171C2975F7FECF28645557E6 /* Pods-TopHeadlinesUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopHeadlinesUITests.debug.xcconfig"; path = "Target Support Files/Pods-TopHeadlinesUITests/Pods-TopHeadlinesUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		2749F531DF3D913C47400F9B /* Pods-TopHeadlinesTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopHeadlinesTests.release.xcconfig"; path = "Target Support Files/Pods-TopHeadlinesTests/Pods-TopHeadlinesTests.release.xcconfig"; sourceTree = "<group>"; };
 		392DBB1C9D1BAEAFD909907D /* Pods-TopHeadlines.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TopHeadlines.debug.xcconfig"; path = "Target Support Files/Pods-TopHeadlines/Pods-TopHeadlines.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,8 +192,8 @@
 		1197768C2265A89200C5DECC /* Scenes */ = {
 			isa = PBXGroup;
 			children = (
+				11DF533E2268BE3200FE6D52 /* HeadlineDetails */,
 				119776902265A94A00C5DECC /* TopHeadlines */,
-				11B9FD5222671975000515DF /* HeadlineDetailsVC.swift */,
 			);
 			path = Scenes;
 			sourceTree = "<group>";
@@ -217,11 +221,12 @@
 		1197768F2265A8C800C5DECC /* Reusables */ = {
 			isa = PBXGroup;
 			children = (
-				119776B722667C5500C5DECC /* Data+Utils.swift */,
+				119776B722667C5500C5DECC /* Date+Utils.swift */,
 				119776B822667C5500C5DECC /* UIDevice+Utils.swift */,
 				11DF53362268657600FE6D52 /* CoreDataManager.swift */,
 				11DF53382268967E00FE6D52 /* Reachability.swift */,
 				11DF533A2268B20F00FE6D52 /* AlertHelper.swift */,
+				11DF53412268CA2900FE6D52 /* String+Utils.swift */,
 			);
 			path = Reusables;
 			sourceTree = "<group>";
@@ -272,6 +277,15 @@
 				119776AB2265C41300C5DECC /* Router.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		11DF533E2268BE3200FE6D52 /* HeadlineDetails */ = {
+			isa = PBXGroup;
+			children = (
+				11B9FD5222671975000515DF /* HeadlineDetailsVC.swift */,
+				11DF533C2268BC9600FE6D52 /* HeadlineDetailsViewModel.swift */,
+			);
+			path = HeadlineDetails;
 			sourceTree = "<group>";
 		};
 		1EFB272E9168D62DD8F60153 /* Frameworks */ = {
@@ -531,16 +545,18 @@
 				119776A22265C31A00C5DECC /* EndPointType.swift in Sources */,
 				119776612265A74A00C5DECC /* TopHeadlinesVC.swift in Sources */,
 				119776942265ABCA00C5DECC /* Headline.swift in Sources */,
+				11DF53422268CA2900FE6D52 /* String+Utils.swift in Sources */,
 				119776A02265C2F400C5DECC /* NetworkManager.swift in Sources */,
 				119776922265A96D00C5DECC /* TopHeadlinesViewModel.swift in Sources */,
 				119776A62265C35D00C5DECC /* HTTPTask.swift in Sources */,
 				119776AC2265C41300C5DECC /* Router.swift in Sources */,
 				11DF533B2268B20F00FE6D52 /* AlertHelper.swift in Sources */,
-				119776B922667C5500C5DECC /* Data+Utils.swift in Sources */,
+				119776B922667C5500C5DECC /* Date+Utils.swift in Sources */,
 				1197765F2265A74A00C5DECC /* AppDelegate.swift in Sources */,
 				11DF53392268967E00FE6D52 /* Reachability.swift in Sources */,
 				11B9FD5322671975000515DF /* HeadlineDetailsVC.swift in Sources */,
 				119776BA22667C5500C5DECC /* UIDevice+Utils.swift in Sources */,
+				11DF533D2268BC9600FE6D52 /* HeadlineDetailsViewModel.swift in Sources */,
 				119776A42265C33000C5DECC /* HTTPMethod.swift in Sources */,
 				1197769E2265BD5F00C5DECC /* URLParameterEncoding.swift in Sources */,
 				11DF53372268657600FE6D52 /* CoreDataManager.swift in Sources */,
