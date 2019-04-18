@@ -24,12 +24,11 @@ class HeadlineDetailsVC: UIViewController {
         return df
     }()
     
-    var model: Article?
+    var model: ArticleModel?
     override func viewDidLoad() {
         super.viewDidLoad()
         guard let model = model else { return }
-        if let urlString = model.urlToImage,
-            let imageURL = URL(string: urlString) {
+        if let imageURL = model.urlToImage {
             detailImageView.kf.setImage(with: imageURL) { [weak self] result in
                 switch result {
                 case .success(_):
@@ -43,16 +42,15 @@ class HeadlineDetailsVC: UIViewController {
             self.detailImageView.image = UIImage(named: "placeholder")
         }
         detailTitleLabel.text = model.title
-        detailDescLabel.text = model.description
+        detailDescLabel.text = model.desc
         detailContentLabel.text = model.content
-        detailPublisherLabel.text = "From : \(model.source.name)"
+        detailPublisherLabel.text = "From : \(model.sourceName!)"
         
-        let date = dateFormatter.date(from: model.publishedAt)
+        let date = dateFormatter.date(from: model.publishedAt!)
         detailPublishTimeLabel.text = date?.timeAgoSinceDate()
     }
     @IBAction func detailButtonTapped(_ sender: Any) {
         guard let model = model else { return }
-        guard let url = URL(string: model.url) else { return }
-        UIApplication.shared.open(url)
+        UIApplication.shared.open(model.url!)
     }
 }
