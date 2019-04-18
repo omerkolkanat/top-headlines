@@ -35,9 +35,8 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         newsTimeLabel.text = nil
     }
     
-    func configure(with article: Article) {
-        if let urlString = article.urlToImage,
-            let imageURL = URL(string: urlString) {
+    func configure(with article: ArticleModel) {
+        if let imageURL = article.urlToImage {
             newsImageView.kf.setImage(with: imageURL) { [weak self] result in
                 switch result {
                 case .success(_):
@@ -51,10 +50,10 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
             self.newsImageView.image = UIImage(named: "placeholder")
         }
         newsTitleLabel.text = article.title
-        newsDescriptionLabel.text = article.description
-        newsFromLabel.text = "From : \(article.source.name)"
+        newsDescriptionLabel.text = article.desc
+        newsFromLabel.text = "From : \(article.sourceName!)"
 
-        let date = dateFormatter.date(from: article.publishedAt)
+        let date = dateFormatter.date(from: article.publishedAt!)
         newsTimeLabel.text = date?.timeAgoSinceDate()
     }
 }

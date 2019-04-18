@@ -29,7 +29,7 @@ class TopHeadlinesVC: UIViewController {
         
         setupUI()
         model.delegate = self
-        model.fetchTopHeadlines()
+        model.loadInitialHeadlines()
     }
     
     func setupUI() {
@@ -74,7 +74,7 @@ extension TopHeadlinesVC: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, willDisplay cell: UICollectionViewCell, forItemAt indexPath: IndexPath) {
         let lastElement = model.articles.count - 1
         if indexPath.row == lastElement {
-            model.fetchTopHeadlines()
+            model.loadMoreHeadlines()
         }
     }
 }
@@ -103,6 +103,10 @@ extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension TopHeadlinesVC: TopHeadlineViewModelProtocol {
+    func didFail() {
+        AlertHelper.showOfflineUsageErrorAlert(fromController: self)
+    }
+    
     func didUpdateTopHeadlines() {
         DispatchQueue.main.async {
             self.collectionView.reloadData()
