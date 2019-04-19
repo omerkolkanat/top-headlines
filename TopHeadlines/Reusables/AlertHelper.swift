@@ -9,17 +9,17 @@
 import Foundation
 import UIKit
 
+enum AlertMessage: String {
+    case offlineUsageErrorMessage = "For offline usage, you should connect to internet at the first open"
+    case genericErrorMessage = "An error occured, please try again later"
+}
+
+enum AlertTitle: String {
+    case warning = "Warning"
+    case error = "Error"
+}
+
 class AlertHelper: NSObject {
-    
-    enum AlertMessage: String {
-        case offlineUsageErrorMessage = "For offline usage, you should connect to internet at the first open"
-    }
-    
-    enum AlertTitle: String {
-        case warning = "Warning"
-        case error = "Error"
-    }
-    
     static func showAlert(title: String, message: String, fromController: UIViewController) {
         let alertController = UIAlertController(title: title,
                                                 message: message,

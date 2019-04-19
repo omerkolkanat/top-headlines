@@ -10,7 +10,8 @@ import Foundation
 
 protocol TopHeadlineViewModelProtocol: class {
     func didUpdateTopHeadlines()
-    func didFail()
+    func didFail(errorMessage: String)
+    func showLoading(shouldShow: Bool)
 }
 
 class TopHeadlineViewModel: NSObject {
@@ -25,11 +26,9 @@ class TopHeadlineViewModel: NSObject {
     }
     
     func loadInitialHeadlines() {
+        delegate?.showLoading(shouldShow: true)
         networkManager.getTopHeadlines(page: 1) { [weak self] (news, error) in
             guard let strongSelf = self else { return }
-            if error != nil {
-                strongSelf.delegate?.didFail()
-            }
             //Fetch data from db if there is no connection
             if !Reachability.isConnectedToNetwork() {
                 if let articles = CoreDataManager.sharedManager.fetchAllArticles(),
@@ -40,9 +39,14 @@ class TopHeadlineViewModel: NSObject {
                     strongSelf.delegate?.didUpdateTopHeadlines()
                 } else {
                     print("DB is empty")
-                    strongSelf.delegate?.didFail()
+                    strongSelf.delegate?.didFail(errorMessage: AlertMessage.offlineUsageErrorMessage.rawValue)
+                    strongSelf.delegate?.showLoading(shouldShow: false)
                 }
                 return
+            }
+            if error != nil {
+                strongSelf.delegate?.didFail(errorMessage: AlertMessage.genericErrorMessage.rawValue)
+                strongSelf.delegate?.showLoading(shouldShow: false)
             }
             guard let articles = news?.articles else { return }
             guard let totalNewsCount = news?.totalResults else { return }
@@ -54,14 +58,17 @@ class TopHeadlineViewModel: NSObject {
             })
             print("Articles loaded from service")
             self?.delegate?.didUpdateTopHeadlines()
+            strongSelf.delegate?.showLoading(shouldShow: false)
         }
     }
     
     func loadMoreHeadlines() {
         if totalNewsCount != 0 && totalNewsCount == articles.count { return }
+        delegate?.showLoading(shouldShow: true)
         networkManager.getTopHeadlines(page: pageCounter) { [weak self] (news, error) in
             if error != nil {
-                self?.delegate?.didFail()
+                self?.delegate?.didFail(errorMessage: AlertMessage.genericErrorMessage.rawValue)
+                self?.delegate?.showLoading(shouldShow: false)
             }
             guard let articles = news?.articles else { return }
             articles.forEach({ (article) in
@@ -69,6 +76,7 @@ class TopHeadlineViewModel: NSObject {
             })
             self?.pageCounter += 1
             self?.delegate?.didUpdateTopHeadlines()
+            self?.delegate?.showLoading(shouldShow: false)
         }
     }
     

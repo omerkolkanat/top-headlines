@@ -97,7 +97,10 @@ class TestTopHeadlinesViewModelDelegate: TopHeadlineViewModelProtocol {
         didLoadHeadlines = true
     }
 
-    func didFail() {
+    func didFail(errorMessage: String) {
         didFailed = true
+    }
+    
+    func showLoading(shouldShow: Bool) {
     }
 }

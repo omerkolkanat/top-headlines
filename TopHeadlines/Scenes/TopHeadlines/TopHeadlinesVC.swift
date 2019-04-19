@@ -12,8 +12,6 @@ class TopHeadlinesVC: UIViewController {
 
     enum Const {
         static let cellHeight: CGFloat = 270
-        static let minLineSpacing: CGFloat = 2
-        static let minItemSpacing: CGFloat = 2
         static let safeAreaSize: CGFloat = 27
         static let itemPerRowInPortrait: CGFloat = 2
         static let itemPerRowInLandscape: CGFloat = 3
@@ -23,7 +21,8 @@ class TopHeadlinesVC: UIViewController {
     fileprivate let model = TopHeadlineViewModel()
 
     @IBOutlet weak var collectionView: UICollectionView!
-
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupUI()
@@ -103,13 +102,26 @@ extension TopHeadlinesVC: UICollectionViewDelegateFlowLayout {
 }
 
 extension TopHeadlinesVC: TopHeadlineViewModelProtocol {
-    func didFail() {
-        AlertHelper.showOfflineUsageErrorAlert(fromController: self)
-    }
-    
     func didUpdateTopHeadlines() {
         DispatchQueue.main.async { [weak self] in
             self?.collectionView.reloadData()
         }
     }
+    
+    func didFail(errorMessage: String) {
+        AlertHelper.showAlert(title: AlertTitle.error.rawValue,
+                              message: errorMessage,
+                              fromController: self)
+    }
+    
+    func showLoading(shouldShow: Bool) {
+        if shouldShow {
+            activityIndicator.startAnimating()
+        } else {
+            DispatchQueue.main.async { [weak self] in
+                self?.activityIndicator.stopAnimating()
+            }
+        }
+    }
+
 }
