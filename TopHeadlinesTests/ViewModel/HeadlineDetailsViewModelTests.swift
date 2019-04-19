@@ -56,5 +56,4 @@ class HeadlineDetailsViewModelTests: XCTestCase {
         XCTAssertEqual(viewModel.url, URL(string: "https://www.netzwelt.de/news/163671-outdoor-navigation-besten-wander-apps-android-ios-test.html"))
     }
     
-    
 }

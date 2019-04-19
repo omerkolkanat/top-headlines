@@ -10,7 +10,6 @@ import Foundation
 import UIKit
 
 class HeadlineDetailsVC: UIViewController {
-    
     @IBOutlet weak var detailImageView: UIImageView!
     @IBOutlet weak var detailPublishTimeLabel: UILabel!
     @IBOutlet weak var detailTitleLabel: UILabel!

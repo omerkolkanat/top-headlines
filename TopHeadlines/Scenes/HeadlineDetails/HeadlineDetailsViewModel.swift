@@ -14,7 +14,6 @@ class HeadlineDetailsViewModel: NSObject {
     init(model: Article) {
         self.model = model
     }
-    
 }
 
 extension HeadlineDetailsViewModel {
@@ -47,7 +46,8 @@ extension HeadlineDetailsViewModel {
     }
     
     var imageURL: URL? {
-        if let imageUrlString = model.urlToImage, let imageUrl = URL(string: imageUrlString)  {
+        if let imageUrlString = model.urlToImage,
+            let imageUrl = URL(string: imageUrlString) {
             return imageUrl
         }
         return nil

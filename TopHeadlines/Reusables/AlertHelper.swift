@@ -12,12 +12,12 @@ import UIKit
 class AlertHelper: NSObject {
     
     enum AlertMessage: String {
-        case OfflineUsageErrorMessage = "For offline usage, you should connect to internet at the first open"
+        case offlineUsageErrorMessage = "For offline usage, you should connect to internet at the first open"
     }
     
     enum AlertTitle: String {
-        case Warning = "Warning"
-        case Error = "Error"
+        case warning = "Warning"
+        case error = "Error"
     }
     
     static func showAlert(title: String, message: String, fromController: UIViewController) {
@@ -30,9 +30,9 @@ class AlertHelper: NSObject {
         fromController.present(alertController, animated: true, completion: nil)
     }
     
-    static func showOfflineUsageErrorAlert(fromController: UIViewController){
-        showAlert(title: AlertTitle.Warning.rawValue,
-                  message: AlertMessage.OfflineUsageErrorMessage.rawValue,
+    static func showOfflineUsageErrorAlert(fromController: UIViewController) {
+        showAlert(title: AlertTitle.warning.rawValue,
+                  message: AlertMessage.offlineUsageErrorMessage.rawValue,
                   fromController: fromController)
     }
 }

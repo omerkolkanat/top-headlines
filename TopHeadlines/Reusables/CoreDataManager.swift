@@ -17,7 +17,7 @@ class CoreDataManager {
     
     lazy var persistentContainer: NSPersistentContainer = {
         let container = NSPersistentContainer(name: "ArticleModel")
-        container.loadPersistentStores(completionHandler: { (storeDescription, error) in
+        container.loadPersistentStores(completionHandler: { (_, error) in
             if let error = error as NSError? {
                 fatalError("Unresolved error \(error), \(error.userInfo)")
             }
@@ -77,7 +77,6 @@ class CoreDataManager {
     func delete(article: ArticleModel) {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         managedContext.delete(article)
-        
         do {
             try managedContext.save()
         } catch {
@@ -89,7 +88,6 @@ class CoreDataManager {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "ArticleModel")
         fetchRequest.returnsObjectsAsFaults = false
-        
         do {
             let results = try managedContext.fetch(fetchRequest)
             for managedObject in results

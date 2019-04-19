@@ -13,9 +13,4 @@ target 'TopHeadlines' do
     # Pods for testing
   end
 
-  target 'TopHeadlinesUITests' do
-    inherit! :search_paths
-    # Pods for testing
-  end
-
 end

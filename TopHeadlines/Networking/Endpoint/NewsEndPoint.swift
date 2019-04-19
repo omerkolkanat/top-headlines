@@ -18,7 +18,7 @@ public enum NewsAPI {
 }
 
 extension NewsAPI: EndPointType {
-    var environmentBaseURL : String {
+    var environmentBaseURL: String {
         switch NetworkManager.environment {
         case .development: return "https://newsapi.org/v2/"
         case .production: return "https://newsapi.org/v2/"

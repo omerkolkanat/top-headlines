@@ -9,7 +9,6 @@
 import Foundation
 
 class MockNetworkManager: NetworkManager {
-    
     enum JsonFileName: String {
         case headlineResponseCorrect = "Headlines"
         case headlineResponseEmpty = "Headlines_empty"
@@ -19,13 +18,13 @@ class MockNetworkManager: NetworkManager {
     var jsonFileName: JsonFileName = .headlineResponseCorrect
     var isNetworkRequestCalled = false
     
-    override func getTopHeadlines(page: Int, completion: @escaping (_ headline: Headline?, _ error: String?) -> ()) {
+    override func getTopHeadlines(page: Int, completion: @escaping (_ headline: Headline?, _ error: String?) -> Void) {
         isNetworkRequestCalled = true
         guard let jsonData = JsonFileLoader.loadJson(fileName: jsonFileName.rawValue) else {
             completion(nil, "json file loading error")
             return
         }
-        let headline = try! JSONDecoder().decode(Headline.self, from: jsonData)
+        let headline = try? JSONDecoder().decode(Headline.self, from: jsonData)
         completion(headline, nil)
     }
     

@@ -23,10 +23,9 @@ class TopHeadlinesVC: UIViewController {
     fileprivate let model = TopHeadlineViewModel()
 
     @IBOutlet weak var collectionView: UICollectionView!
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         setupUI()
         model.delegate = self
         model.loadInitialHeadlines()
@@ -59,7 +58,6 @@ extension TopHeadlinesVC: UICollectionViewDelegate {
 }
 
 extension TopHeadlinesVC: UICollectionViewDataSource {
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return model.articles.count
     }

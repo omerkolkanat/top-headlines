@@ -30,7 +30,8 @@ class NetworkManager {
     static let pageSize = 21
     let router = Router<NewsAPI>()
     
-    func getTopHeadlines(page: Int, completion: @escaping (_ headline: Headline?, _ error: String?) -> ()) {
+    func getTopHeadlines(page: Int,
+                         completion: @escaping (_ headline: Headline?, _ error: String?) -> Void) {
         router.request(.topHeadlines(page: page)) { (data, response, error) in
             if error != nil {
                 completion(nil, "Please check your network connection.")
@@ -49,7 +50,7 @@ class NetworkManager {
                         let jsonData = try JSONSerialization.jsonObject(with: responseData, options: .mutableContainers)
                         print(jsonData)
                         let apiResponse = try JSONDecoder().decode(Headline.self, from: responseData)
-                        completion(apiResponse,nil)
+                        completion(apiResponse, nil)
                     } catch {
                         print(error)
                         completion(nil, NetworkResponse.unableToDecode.rawValue)
