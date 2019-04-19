@@ -73,7 +73,6 @@ class CoreDataManager {
             return nil
         }
     }
-
     
     func delete(article: ArticleModel) {
         let managedContext = CoreDataManager.sharedManager.persistentContainer.viewContext
@@ -103,5 +102,22 @@ class CoreDataManager {
             print("ArticleModel all data error : \(error) \(error.userInfo)")
         }
     }
-
+    
+    func convertToModel(from articleManagedObject: ArticleModel) -> Article? {
+        if let sourceName = articleManagedObject.sourceName,
+            let title = articleManagedObject.title,
+            let url = articleManagedObject.url,
+            let urlToImage = articleManagedObject.urlToImage,
+            let publishedAt = articleManagedObject.publishedAt {
+            return Article(source: Source(id: nil, name: sourceName),
+                           author: nil,
+                           title: title,
+                           description: articleManagedObject.desc,
+                           url: url.absoluteString,
+                           urlToImage: urlToImage.absoluteString,
+                           publishedAt: publishedAt,
+                           content: articleManagedObject.content)
+        }
+        return nil
+    }
 }

@@ -9,30 +9,21 @@
 import Foundation
 
 class HeadlineDetailsViewModel: NSObject {
-    private let model: ArticleModel
+    private let model: Article
 
-    init(model: ArticleModel) {
+    init(model: Article) {
         self.model = model
     }
     
 }
 
 extension HeadlineDetailsViewModel {
-    var imageURL: URL? {
-        if let imageUrl = model.urlToImage {
-             return imageUrl
-        }
-        return nil
-    }
-    
     var title: String {
-        if let title = model.title {
-            return title
-        } else { return "" }
+        return model.title
     }
     
     var desc: String {
-        if let desc = model.desc {
+        if let desc = model.description {
             return desc
         } else { return "" }
     }
@@ -44,23 +35,29 @@ extension HeadlineDetailsViewModel {
     }
     
     var publisher: String {
-       return "From : \(model.sourceName ?? "")"
+       return model.source.name
     }
     
     var publishedAt: String {
-        if let publishedDate = model.publishedAt {
-            let date = publishedDate.toDate()
-            if let timeAgo = date?.timeAgoSinceDate() {
-                return timeAgo
-            }
+        let date = model.publishedAt.toDate()
+        if let timeAgo = date?.timeAgoSinceDate() {
+            return timeAgo
         }
         return ""
     }
     
+    var imageURL: URL? {
+        if let imageUrlString = model.urlToImage, let imageUrl = URL(string: imageUrlString)  {
+            return imageUrl
+        }
+        return nil
+    }
+    
     var url: URL? {
-        if let url = model.url {
+        if let url = URL(string: model.url) {
             return url
-        } else { return nil }
+        }
+        return nil
     }
     
 }

@@ -51,9 +51,11 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         }
         newsTitleLabel.text = article.title
         newsDescriptionLabel.text = article.desc
-        newsFromLabel.text = "From : \(article.sourceName!)"
+        newsFromLabel.text = "From : \(article.sourceName ?? "")"
 
-        let date = dateFormatter.date(from: article.publishedAt!)
-        newsTimeLabel.text = date?.timeAgoSinceDate()
+        if let publishedAtString = article.publishedAt {
+            let date = dateFormatter.date(from: publishedAtString)
+            newsTimeLabel.text = date?.timeAgoSinceDate()
+        }
     }
 }

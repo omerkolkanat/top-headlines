@@ -23,7 +23,7 @@ enum Result<String> {
     case failure(String)
 }
 
-struct NetworkManager {
+class NetworkManager {
     static let environment: NetworkEnvironment = .production
     static let country = "de"
     static let newsAPIKey = "e6fc195b15a34e6197e296f18eef0b4e"

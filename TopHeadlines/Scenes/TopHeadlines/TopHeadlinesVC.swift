@@ -48,7 +48,8 @@ class TopHeadlinesVC: UIViewController {
 
 extension TopHeadlinesVC: UICollectionViewDelegate {
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let viewModel = HeadlineDetailsViewModel(model: model.articles[indexPath.row])
+            guard let articleModel = CoreDataManager.sharedManager.convertToModel(from: model.articles[indexPath.row]) else { return }
+            let viewModel = HeadlineDetailsViewModel(model: articleModel)
             if let viewController = self.storyboard?.instantiateViewController(withIdentifier: "HeadlineDetailsVC")
                 as? HeadlineDetailsVC {
                 viewController.viewModel = viewModel
