@@ -22,20 +22,26 @@ class NetworkManagerTests: XCTestCase {
     }
     
     func testRealNetworkManager() {
+        let e = expectation(description: "getTopHeadlines")
         let networkManager = NetworkManager()
         networkManager.getTopHeadlines(page: 1) { (headline, error) in
             XCTAssert(error == nil, "Network request got error.")
             XCTAssert(headline != nil, "The API service doesn't response correct data back.")
             XCTAssertTrue(headline?.articles.count == 21, "The mock data has 21 initial articles.")
+            e.fulfill()
         }
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
     
     func testRealNetworkManagerForPageTwo() {
+        let e = expectation(description: "getTopHeadlinesPage2")
         let networkManager = NetworkManager()
         networkManager.getTopHeadlines(page: 2) { (headline, error) in
             XCTAssert(error == nil, "Network request got error.")
             XCTAssert(headline != nil, "The API service doesn't response correct data back.")
+            e.fulfill()
         }
+        waitForExpectations(timeout: 5.0, handler: nil)
     }
     
     func testMockNetworkManagerWithCorrectData() {
