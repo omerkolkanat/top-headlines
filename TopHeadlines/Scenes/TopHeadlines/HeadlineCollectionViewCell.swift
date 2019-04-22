@@ -16,12 +16,6 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var newsFromLabel: UILabel!
     @IBOutlet weak var newsTimeLabel: UILabel!
     
-    private lazy var dateFormatter: DateFormatter = {
-        let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd'T'HH:mm:ssZ"
-        return df
-    }()
-    
     override func awakeFromNib() {
         super.awakeFromNib()
     }
@@ -54,7 +48,7 @@ class HeadlineCollectionViewCell: UICollectionViewCell {
         newsFromLabel.text = "From : \(article.sourceName ?? "")"
 
         if let publishedAtString = article.publishedAt {
-            let date = dateFormatter.date(from: publishedAtString)
+            let date = publishedAtString.toDate()
             newsTimeLabel.text = date?.timeAgoSinceDate()
         }
     }
